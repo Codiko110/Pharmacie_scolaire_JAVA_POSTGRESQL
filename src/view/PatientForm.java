@@ -64,7 +64,8 @@ public class PatientForm extends JFrame {
     }
 
     private void setupTypePanels() {
-        elevePanel.add(new JLabel("Matricule:"));
+    
+        elevePanel.add(new JLabel("Matriculssss:"));
         elevePanel.add(matriculeField);
         elevePanel.add(new JLabel("Classe:"));
         elevePanel.add(classeField);
