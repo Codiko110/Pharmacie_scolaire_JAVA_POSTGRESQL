@@ -89,15 +89,21 @@ User: postgres
 Password: 1234 (à modifier selon votre configuration)
 ```
 
-## Compilation **Linux/Mac:**
-bash
+## Compilation
+ **Linux/Mac:**
+```bash
 javac -cp "lib/postgresql-42.7.7.jar" -d out $(find src -name "*.java")
+```
 **Windows:**
-cmd
+```cmd
 javac -cp "lib/postgresql-42.7.7.jar" -d out -sourcepath src src\**\*.java
-## Exécution **Linux/Mac (utilisez : comme séparateur):**
-bash
+```
+## Exécution 
+**Linux/Mac (utilisez : comme séparateur):**
+```bash
 java -cp "out:lib/postgresql-42.7.7.jar" . main.App
+```
 **Windows (utilisez ; comme séparateur):**
-cmd
+```cmd
 java -cp "out;lib/postgresql-42.7.7.jar" main.App
+```
