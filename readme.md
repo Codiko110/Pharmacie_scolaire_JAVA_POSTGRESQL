@@ -12,20 +12,20 @@ Application Java Swing pour la gestion des médicaments, des patients (élèves 
 - 📊 Tableau de bord avec statistiques et rapports
 
 ## Structure du Projet
-
+```
 src/
 ├── model/ → Classes POJO (entités)
 ├── controller/ → Logique métier et accès à la base de données
 ├── view/ → Interfaces graphiques Swing
 └── main/ → Point d'entrée principal (App.java)
-
+```
 
 ## Prérequis
-
+```
 - Java JDK 8 ou supérieur  
 - PostgreSQL  
 - Driver PostgreSQL JDBC (inclus dans `lib/postgresql-42.7.7.jar`)
-
+```
 ## Pour importer la base
 ```bash
 psql -U postgres -d pharmacie_scolaire -f pharmacie.sql
