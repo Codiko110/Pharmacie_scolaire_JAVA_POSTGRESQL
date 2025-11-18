@@ -64,48 +64,182 @@ public class PatientForm extends JFrame {
     }
 
     private void setupTypePanels() {
-    
-        elevePanel.add(new JLabel("Matriculssss:"));
+        elevePanel.setLayout(new BoxLayout(elevePanel, BoxLayout.Y_AXIS));
+        elevePanel.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createLineBorder(new Color(52, 152, 219), 1),
+            "Informations Élève",
+            0, 0,
+            new Font("Segoe UI", Font.BOLD, 12),
+            new Color(52, 152, 219)
+        ));
+        
+        JLabel matriculeLabel = new JLabel("Matricule:");
+        matriculeLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        matriculeLabel.setForeground(new Color(52, 73, 94));
+        elevePanel.add(matriculeLabel);
+        styleTextField(matriculeField);
         elevePanel.add(matriculeField);
-        elevePanel.add(new JLabel("Classe:"));
+        elevePanel.add(Box.createVerticalStrut(10));
+        
+        JLabel classeLabel = new JLabel("Classe:");
+        classeLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        classeLabel.setForeground(new Color(52, 73, 94));
+        elevePanel.add(classeLabel);
+        styleTextField(classeField);
         elevePanel.add(classeField);
 
-        enseignantPanel.add(new JLabel("Département:"));
+        enseignantPanel.setLayout(new BoxLayout(enseignantPanel, BoxLayout.Y_AXIS));
+        enseignantPanel.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createLineBorder(new Color(46, 204, 113), 1),
+            "Informations Enseignant",
+            0, 0,
+            new Font("Segoe UI", Font.BOLD, 12),
+            new Color(46, 204, 113)
+        ));
+        
+        JLabel departementLabel = new JLabel("Département:");
+        departementLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        departementLabel.setForeground(new Color(52, 73, 94));
+        enseignantPanel.add(departementLabel);
+        styleTextField(departementField);
         enseignantPanel.add(departementField);
-        enseignantPanel.add(new JLabel("Fonction:"));
+        enseignantPanel.add(Box.createVerticalStrut(10));
+        
+        JLabel fonctionLabel = new JLabel("Fonction:");
+        fonctionLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        fonctionLabel.setForeground(new Color(52, 73, 94));
+        enseignantPanel.add(fonctionLabel);
+        styleTextField(fonctionField);
         enseignantPanel.add(fonctionField);
+    }
+    
+    private void styleTextField(JTextField field) {
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        field.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+            BorderFactory.createEmptyBorder(10, 12, 10, 12)
+        ));
+        field.setBackground(Color.WHITE);
+        field.setForeground(new Color(52, 73, 94));
+        field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+        field.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        // Effet de focus
+        field.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                field.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(52, 152, 219), 2),
+                    BorderFactory.createEmptyBorder(9, 11, 9, 11)
+                ));
+            }
+            
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                field.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                    BorderFactory.createEmptyBorder(10, 12, 10, 12)
+                ));
+            }
+        });
     }
 
     private JPanel buildFormPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        panel.setBackground(new Color(250, 250, 250));
 
-        JPanel baseFields = new JPanel(new GridLayout(8, 2, 6, 6));
-        baseFields.add(new JLabel("Nom:"));
+        // Styliser les champs de base
+        styleTextField(nomField);
+        styleTextField(dateNaissanceField);
+        styleComboBox(sexeCombo);
+        styleComboBox(typeCombo);
+
+        JPanel baseFields = new JPanel();
+        baseFields.setLayout(new BoxLayout(baseFields, BoxLayout.Y_AXIS));
+        baseFields.setBackground(new Color(250, 250, 250));
+        
+        // Nom
+        JLabel nomLabel = new JLabel("Nom:");
+        nomLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        nomLabel.setForeground(new Color(52, 73, 94));
+        baseFields.add(nomLabel);
+        baseFields.add(Box.createVerticalStrut(5));
         baseFields.add(nomField);
-        baseFields.add(new JLabel("Sexe:"));
+        baseFields.add(Box.createVerticalStrut(15));
+        
+        // Sexe
+        JLabel sexeLabel = new JLabel("Sexe:");
+        sexeLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        sexeLabel.setForeground(new Color(52, 73, 94));
+        baseFields.add(sexeLabel);
+        baseFields.add(Box.createVerticalStrut(5));
         baseFields.add(sexeCombo);
-        baseFields.add(new JLabel("Date Naissance (YYYY-MM-DD):"));
+        baseFields.add(Box.createVerticalStrut(15));
+        
+        // Date Naissance
+        JLabel dateLabel = new JLabel("Date Naissance (YYYY-MM-DD):");
+        dateLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        dateLabel.setForeground(new Color(52, 73, 94));
+        baseFields.add(dateLabel);
+        baseFields.add(Box.createVerticalStrut(5));
         baseFields.add(dateNaissanceField);
-        baseFields.add(new JLabel("Type:"));
+        baseFields.add(Box.createVerticalStrut(15));
+        
+        // Type
+        JLabel typeLabel = new JLabel("Type:");
+        typeLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        typeLabel.setForeground(new Color(52, 73, 94));
+        baseFields.add(typeLabel);
+        baseFields.add(Box.createVerticalStrut(5));
         baseFields.add(typeCombo);
+        baseFields.add(Box.createVerticalStrut(20));
 
         panel.add(baseFields);
-        panel.add(Box.createVerticalStrut(10));
-        
-        JLabel typeLabel = new JLabel("Détails spécifiques:");
-        typeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        panel.add(typeLabel);
         
         elevePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         enseignantPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        elevePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
+        enseignantPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
         panel.add(elevePanel);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(enseignantPanel);
 
         onTypeChange(); // Initialiser l'affichage
 
         return panel;
+    }
+    
+    private void styleComboBox(JComboBox<String> combo) {
+        combo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        combo.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+            BorderFactory.createEmptyBorder(8, 10, 8, 10)
+        ));
+        combo.setBackground(Color.WHITE);
+        combo.setForeground(new Color(52, 73, 94));
+        combo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
+        combo.setAlignmentX(Component.LEFT_ALIGNMENT);
+        
+        // Effet de focus
+        combo.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                combo.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(52, 152, 219), 2),
+                    BorderFactory.createEmptyBorder(7, 9, 7, 9)
+                ));
+            }
+            
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                combo.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(new Color(200, 200, 200), 1),
+                    BorderFactory.createEmptyBorder(8, 10, 8, 10)
+                ));
+            }
+        });
     }
 
     private void onTypeChange() {
